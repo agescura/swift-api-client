@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE243D1E2A5020470095EC05 /* APIClient in Frameworks */ = {isa = PBXBuildFile; productRef = CE243D1D2A5020470095EC05 /* APIClient */; };
 		CEBB69B92A501A2F00A59F67 /* ExampleClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB69B82A501A2F00A59F67 /* ExampleClientApp.swift */; };
 		CEBB69BB2A501A2F00A59F67 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB69BA2A501A2F00A59F67 /* ContentView.swift */; };
 		CEBB69BD2A501A3000A59F67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEBB69BC2A501A3000A59F67 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE243D1B2A5020400095EC05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CEBB69B52A501A2F00A59F67 /* ExampleClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBB69B82A501A2F00A59F67 /* ExampleClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleClientApp.swift; sourceTree = "<group>"; };
 		CEBB69BA2A501A2F00A59F67 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -27,18 +29,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE243D1E2A5020470095EC05 /* APIClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE243D1C2A5020470095EC05 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CEBB69AC2A501A2F00A59F67 = {
 			isa = PBXGroup;
 			children = (
 				CEBB69C62A501AA000A59F67 /* swift-api-client */,
 				CEBB69B72A501A2F00A59F67 /* ExampleClient */,
 				CEBB69B62A501A2F00A59F67 /* Products */,
+				CE243D1C2A5020470095EC05 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -53,6 +64,7 @@
 		CEBB69B72A501A2F00A59F67 /* ExampleClient */ = {
 			isa = PBXGroup;
 			children = (
+				CE243D1B2A5020400095EC05 /* Info.plist */,
 				CEBB69B82A501A2F00A59F67 /* ExampleClientApp.swift */,
 				CEBB69BA2A501A2F00A59F67 /* ContentView.swift */,
 				CEBB69BC2A501A3000A59F67 /* Assets.xcassets */,
@@ -85,6 +97,9 @@
 			dependencies = (
 			);
 			name = ExampleClient;
+			packageProductDependencies = (
+				CE243D1D2A5020470095EC05 /* APIClient */,
+			);
 			productName = ExampleClient;
 			productReference = CEBB69B52A501A2F00A59F67 /* ExampleClient.app */;
 			productType = "com.apple.product-type.application";
@@ -272,6 +287,7 @@
 				DEVELOPMENT_TEAM = 42PM39LYJ3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExampleClient/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -301,6 +317,7 @@
 				DEVELOPMENT_TEAM = 42PM39LYJ3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExampleClient/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -341,6 +358,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE243D1D2A5020470095EC05 /* APIClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = APIClient;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEBB69AD2A501A2F00A59F67 /* Project object */;
 }
