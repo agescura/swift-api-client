@@ -7,28 +7,47 @@ extension APIClient {
 		let session = URLSession.shared
 		
 		return Self(
-			fruit: { name in
-				try await session.data(for: FruitRequest.fruit(name), using: Fruit.self)
+			acronyms: {
+				try await session.data(for: AcronymsRequest.acronyms, using: [Acronym].self)
+			},
+			acronym: { id in
+				try await session.data(for: AcronymsRequest.acronym(id), using: Acronym.self)
+			},
+			updateAcronym: { acronym in
+				try await session.data(for: AcronymsRequest.update(acronym), using: Acronym.self)
 			}
 		)
 	}()
 }
 
-enum FruitRequest {
-	case fruit(String)
+enum AcronymsRequest {
+	case acronyms
+	case acronym(UUID)
+	case update(Acronym)
 }
 
-extension FruitRequest: Request {
+extension AcronymsRequest: Request {
 	var scheme: HTTPScheme {
-		.https
+		.http
 	}
 	
 	var baseUrl: String {
-		"www.fruityvice.com"
+		"localhost"
+	}
+	
+	var port: Int? {
+		8080
 	}
 	
 	var path: String {
-		"/api/fruit/banana"
+		switch self {
+			case .acronyms:
+				return "/api/acronyms"
+			case let .acronym(id):
+				return "/api/acronyms/\(id.uuidString)"
+			case let .update(acronym):
+				return "/api/acronyms/\(acronym.id.uuidString)"
+		}
 	}
 	
 	var parameters: [URLQueryItem] {
@@ -36,18 +55,26 @@ extension FruitRequest: Request {
 	}
 	
 	var method: HTTPMethod {
-		.get
+		switch self {
+			case .acronym, .acronyms:
+				return .get
+			case .update:
+				return .put
+		}
 	}
 	
 	var httpBody: Data? {
-		nil
+		get throws {
+			switch self {
+				case .acronym, .acronyms:
+					return nil
+				case let .update(acronym):
+					return try JSONEncoder().encode(acronym)
+			}
+		}
 	}
 	
 	var headers: [String : String] {
 		[:]
-	}
-	
-	var authentication: Bool {
-		false
 	}
 }

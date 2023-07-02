@@ -2,11 +2,17 @@ import Foundation
 import Models
 
 public struct APIClient {
-	public var fruit: (String) async throws -> Fruit
+	public var acronyms: () async throws -> [Acronym]
+	public var acronym: (UUID) async throws -> Acronym
+	public var updateAcronym: (Acronym) async throws -> Acronym
 	
 	public init(
-		fruit: @escaping (String) async throws -> Fruit
+		acronyms: @escaping () async throws -> [Acronym],
+		acronym: @escaping (UUID) async throws -> Acronym,
+		updateAcronym: @escaping (Acronym) async throws -> Acronym
 	) {
-		self.fruit = fruit
+		self.acronyms = acronyms
+		self.acronym = acronym
+		self.updateAcronym = updateAcronym
 	}
 }
