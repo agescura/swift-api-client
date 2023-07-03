@@ -18,9 +18,78 @@ extension APIClient {
 			},
 			deleteAcronym: { acronym in
 				try await session.data(for: AcronymsRequest.delete(acronym))
+			},
+			searchAcronym: { query in
+				try await session.data(for: AcronymsRequest.search(query), using: [Acronym].self)
+			},
+			getUsers: {
+				try await session.data(for: UsersRequest.users, using: [User].self)
+			},
+			getUser: { id in
+				try await session.data(for: UsersRequest.user(id), using: User.self)
+			},
+			createUser: { user in
+				try await session.data(for: UsersRequest.createUser(user))
 			}
 		)
 	}()
+}
+
+enum UsersRequest {
+	case users
+	case user(UUID)
+	case createUser(User)
+}
+
+extension UsersRequest: Request {
+	var scheme: HTTPScheme {
+		.http
+	}
+	
+	var baseUrl: String {
+		"localhost"
+	}
+	
+	var port: Int? {
+		8080
+	}
+	
+	var path: String {
+		switch self {
+			case .users, .createUser:
+				return "/api/userss"
+			case let .user(id):
+				return "/api/users/\(id.uuidString)"
+		}
+	}
+	
+	var parameters: [URLQueryItem] {
+		return []
+	}
+	
+	var method: HTTPMethod {
+		switch self {
+			case .users, .user:
+				return .get
+			case .createUser:
+				return .post
+		}
+	}
+	
+	var httpBody: Data? {
+		get throws {
+			switch self {
+				case .users, .user:
+					return nil
+				case let .createUser(user):
+					return try JSONEncoder().encode(user)
+			}
+		}
+	}
+	
+	var headers: [String : String] {
+		["Content-Type": "application/json"]
+	}
 }
 
 enum AcronymsRequest {
@@ -28,6 +97,7 @@ enum AcronymsRequest {
 	case acronym(UUID)
 	case update(Acronym)
 	case delete(Acronym)
+	case search(Query)
 }
 
 extension AcronymsRequest: Request {
@@ -51,16 +121,25 @@ extension AcronymsRequest: Request {
 				return "/api/acronyms/\(id.uuidString)"
 			case let .update(acronym), let .delete(acronym):
 				return "/api/acronyms/\(acronym.id.uuidString)"
+			case .search:
+				return "/api/acronyms/search"
 		}
 	}
 	
 	var parameters: [URLQueryItem] {
-		[]
+		switch self {
+			case .acronym, .acronyms, .delete, .update:
+				return []
+			case let .search(query):
+				return [
+					URLQueryItem(name: "term", value: query)
+				]
+		}
 	}
 	
 	var method: HTTPMethod {
 		switch self {
-			case .acronym, .acronyms:
+			case .acronym, .acronyms, .search:
 				return .get
 			case .update:
 				return .put
@@ -72,7 +151,7 @@ extension AcronymsRequest: Request {
 	var httpBody: Data? {
 		get throws {
 			switch self {
-				case .acronym, .acronyms, .delete:
+				case .acronym, .acronyms, .delete, .search:
 					return nil
 				case let .update(acronym):
 					return try JSONEncoder().encode(acronym)

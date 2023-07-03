@@ -2,7 +2,7 @@ import Foundation
 import Models
 import Networking
 
-extension Acronym: Mappeable {
+extension Acronym: Mappable {
 	public static func map(_ response: APIResponse) -> Self {
 		Acronym(
 			id: UUID(uuidString: response.id),

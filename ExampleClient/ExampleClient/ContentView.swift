@@ -2,11 +2,20 @@ import APIClient
 import Models
 import SwiftUI
 
+
+
 class ContentModel: ObservableObject {
 	let apiClient = APIClient.liveValue
 	
+	@Published var tab: Tab
+	
+	public init(tab: Tab = .users) {
+		self.tab = tab
+	}
+	
 	@Published var acronyms: [Acronym] = []
 	@Published var acronym: Acronym?
+	@Published var searchIsPresented = false
 	
 	func task() async {
 		Task { @MainActor in
@@ -22,7 +31,11 @@ class ContentModel: ObservableObject {
 			for index in indexSet {
 				try await self.apiClient.deleteAcronym(self.acronyms[index])
 			}
-		}
+		} 
+	}
+	
+	func search() {
+		self.searchIsPresented = true
 	}
 }
 
@@ -30,39 +43,67 @@ struct ContentView: View {
 	@ObservedObject var model: ContentModel = ContentModel()
 	
 	var body: some View {
-		NavigationStack {
-			List {
-				ForEach(self.model.acronyms) { acronym in
-					NavigationLink(
-						destination: {
-							FormView(model: FormModel(acronym: acronym))
-						}, label: {
-							HStack {
-								Text(acronym.short)
-								Spacer()
-								Text(acronym.long)
-							}
-						}
-					)
-				}
-				.onDelete { indexSet in
-					self.model.deleteAcronyms(indexSet)
-				}
+		TabView(selection: self.$model.tab) {
+			NavigationStack {
+				UsersView(
+					model: UsersModel()
+				)
 			}
-			.toolbar {
-				ToolbarItem(placement: .bottomBar) {
-					if let acronym = self.model.acronym {
-						HStack {
-							Text(acronym.short)
-							Spacer()
-							Text(acronym.long)
-						}
-					}
-				}
-			}
+			.tabItem { Text("Users") }
+			.tag(Tab.users)
+				
+			Text("Acronyms")
+				.tabItem { Text("Acronyms") }
+				.tag(Tab.acronyms)
 			
+			Text("Categories")
+				.tabItem { Text("Categories") }
+				.tag(Tab.categories)
 		}
-		.task { await self.model.task() }
+//		NavigationStack {
+//			List {
+//				ForEach(self.model.acronyms) { acronym in
+//					NavigationLink(
+//						destination: {
+//							FormView(model: FormModel(acronym: acronym))
+//						}, label: {
+//							HStack {
+//								Text(acronym.short)
+//								Spacer()
+//								Text(acronym.long)
+//							}
+//						}
+//					)
+//				}
+//				.onDelete { indexSet in
+//					self.model.deleteAcronyms(indexSet)
+//				}
+//			}
+//			.navigationDestination(
+//				isPresented: self.$model.searchIsPresented,
+//				destination: { SearchView(model: SearchModel()) }
+//			)
+//			.toolbar {
+//				ToolbarItem(placement: .bottomBar) {
+//					if let acronym = self.model.acronym {
+//						HStack {
+//							Text(acronym.short)
+//							Spacer()
+//							Text(acronym.long)
+//						}
+//					}
+//				}
+//				ToolbarItem(placement: .primaryAction) {
+//					Button {
+//						self.model.search()
+//					} label: {
+//						Text("Search")
+//					}
+//				}
+//			}
+//
+//		}
+//		.task { await self.model.task() }
 	}
 }
 
@@ -103,6 +144,36 @@ struct FormView: View {
 					Text("Update")
 				}
 			}
+		}
+	}
+}
+
+class SearchModel: ObservableObject {
+	let apiClient = APIClient.liveValue
+	@Published var acronyms: [Acronym] = []
+	
+	func search() {
+		Task { @MainActor in
+			self.acronyms = try await self.apiClient.searchAcronym("What The Fudge")
+		}
+	}
+}
+
+struct SearchView: View {
+	@ObservedObject var model: SearchModel
+	
+	var body: some View {
+		List {
+			ForEach(self.model.acronyms) { acronym in
+				HStack {
+					Text(acronym.short)
+					Spacer()
+					Text(acronym.long)
+				}
+			}
+		}
+		.onAppear {
+			self.model.search()
 		}
 	}
 }

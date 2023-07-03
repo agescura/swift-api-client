@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE243D1E2A5020470095EC05 /* APIClient in Frameworks */ = {isa = PBXBuildFile; productRef = CE243D1D2A5020470095EC05 /* APIClient */; };
+		CE6289DD2A5360B70034E0CF /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6289DC2A5360B70034E0CF /* UsersView.swift */; };
 		CEBB69B92A501A2F00A59F67 /* ExampleClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB69B82A501A2F00A59F67 /* ExampleClientApp.swift */; };
 		CEBB69BB2A501A2F00A59F67 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB69BA2A501A2F00A59F67 /* ContentView.swift */; };
 		CEBB69BD2A501A3000A59F67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEBB69BC2A501A3000A59F67 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		CE243D1B2A5020400095EC05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CE6289DC2A5360B70034E0CF /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
 		CEBB69B52A501A2F00A59F67 /* ExampleClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBB69B82A501A2F00A59F67 /* ExampleClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleClientApp.swift; sourceTree = "<group>"; };
 		CEBB69BA2A501A2F00A59F67 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				CE243D1B2A5020400095EC05 /* Info.plist */,
 				CEBB69B82A501A2F00A59F67 /* ExampleClientApp.swift */,
 				CEBB69BA2A501A2F00A59F67 /* ContentView.swift */,
+				CE6289DC2A5360B70034E0CF /* UsersView.swift */,
 				CEBB69BC2A501A3000A59F67 /* Assets.xcassets */,
 				CEBB69BE2A501A3000A59F67 /* Preview Content */,
 			);
@@ -156,6 +159,7 @@
 			files = (
 				CEBB69BB2A501A2F00A59F67 /* ContentView.swift in Sources */,
 				CEBB69B92A501A2F00A59F67 /* ExampleClientApp.swift in Sources */,
+				CE6289DD2A5360B70034E0CF /* UsersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
