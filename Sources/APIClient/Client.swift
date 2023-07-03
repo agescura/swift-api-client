@@ -2,17 +2,20 @@ import Foundation
 import Models
 
 public struct APIClient {
-	public var acronyms: () async throws -> [Acronym]
-	public var acronym: (UUID) async throws -> Acronym
-	public var updateAcronym: (Acronym) async throws -> Acronym
+	public var getAcronyms: () async throws -> [Acronym]
+	public var getAcronym: (UUID) async throws -> Acronym
+	public var updateAcronym: (Acronym) async throws -> Void
+	public var deleteAcronym: (Acronym) async throws -> Void
 	
 	public init(
-		acronyms: @escaping () async throws -> [Acronym],
-		acronym: @escaping (UUID) async throws -> Acronym,
-		updateAcronym: @escaping (Acronym) async throws -> Acronym
+		getAcronyms: @escaping () async throws -> [Acronym],
+		getAcronym: @escaping (UUID) async throws -> Acronym,
+		updateAcronym: @escaping (Acronym) async throws -> Void,
+		deleteAcronym: @escaping (Acronym) async throws -> Void
 	) {
-		self.acronyms = acronyms
-		self.acronym = acronym
+		self.getAcronyms = getAcronyms
+		self.getAcronym = getAcronym
 		self.updateAcronym = updateAcronym
+		self.deleteAcronym = deleteAcronym
 	}
 }

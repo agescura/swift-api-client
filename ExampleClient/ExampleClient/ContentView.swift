@@ -10,9 +10,17 @@ class ContentModel: ObservableObject {
 	
 	func task() async {
 		Task { @MainActor in
-			self.acronyms = try await self.apiClient.acronyms()
+			self.acronyms = try await self.apiClient.getAcronyms()
 			if let acronym = self.acronyms.last {
-				self.acronym = try await self.apiClient.acronym(acronym.id)
+				self.acronym = try await self.apiClient.getAcronym(acronym.id)
+			}
+		}
+	}
+	
+	func deleteAcronyms(_ indexSet: IndexSet) {
+		Task {
+			for index in indexSet {
+				try await self.apiClient.deleteAcronym(self.acronyms[index])
 			}
 		}
 	}
@@ -36,6 +44,9 @@ struct ContentView: View {
 							}
 						}
 					)
+				}
+				.onDelete { indexSet in
+					self.model.deleteAcronyms(indexSet)
 				}
 			}
 			.toolbar {
@@ -71,7 +82,7 @@ class FormModel: ObservableObject {
 	
 	func updateAcronym() {
 		Task { @MainActor in
-			self.acronym = try await self.apiClient.updateAcronym(self.acronym)
+			print(try await self.apiClient.updateAcronym(self.acronym))
 		}
 	}
 }

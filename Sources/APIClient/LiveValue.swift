@@ -7,14 +7,17 @@ extension APIClient {
 		let session = URLSession.shared
 		
 		return Self(
-			acronyms: {
+			getAcronyms: {
 				try await session.data(for: AcronymsRequest.acronyms, using: [Acronym].self)
 			},
-			acronym: { id in
+			getAcronym: { id in
 				try await session.data(for: AcronymsRequest.acronym(id), using: Acronym.self)
 			},
 			updateAcronym: { acronym in
-				try await session.data(for: AcronymsRequest.update(acronym), using: Acronym.self)
+				try await session.data(for: AcronymsRequest.update(acronym))
+			},
+			deleteAcronym: { acronym in
+				try await session.data(for: AcronymsRequest.delete(acronym))
 			}
 		)
 	}()
@@ -24,6 +27,7 @@ enum AcronymsRequest {
 	case acronyms
 	case acronym(UUID)
 	case update(Acronym)
+	case delete(Acronym)
 }
 
 extension AcronymsRequest: Request {
@@ -45,7 +49,7 @@ extension AcronymsRequest: Request {
 				return "/api/acronyms"
 			case let .acronym(id):
 				return "/api/acronyms/\(id.uuidString)"
-			case let .update(acronym):
+			case let .update(acronym), let .delete(acronym):
 				return "/api/acronyms/\(acronym.id.uuidString)"
 		}
 	}
@@ -60,13 +64,15 @@ extension AcronymsRequest: Request {
 				return .get
 			case .update:
 				return .put
+			case .delete:
+				return .delete
 		}
 	}
 	
 	var httpBody: Data? {
 		get throws {
 			switch self {
-				case .acronym, .acronyms:
+				case .acronym, .acronyms, .delete:
 					return nil
 				case let .update(acronym):
 					return try JSONEncoder().encode(acronym)
@@ -75,6 +81,6 @@ extension AcronymsRequest: Request {
 	}
 	
 	var headers: [String : String] {
-		[:]
+		["Content-Type": "application/json"]
 	}
 }
