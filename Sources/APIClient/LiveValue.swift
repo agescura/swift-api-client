@@ -8,7 +8,12 @@ extension APIClient {
 		
 		return Self(
 			getAcronyms: {
-				try await session.data(for: AcronymsRequest.acronyms, using: [Acronym].self)
+				do {
+					return try await session.data(for: AcronymsRequest.acronyms, using: [Acronym].self)
+				} catch {
+					print(error)
+					return []
+				}
 			},
 			getAcronym: { id in
 				try await session.data(for: AcronymsRequest.acronym(id), using: Acronym.self)
@@ -23,7 +28,17 @@ extension APIClient {
 				try await session.data(for: AcronymsRequest.search(query), using: [Acronym].self)
 			},
 			getUsers: {
-				try await session.data(for: UsersRequest.users, using: [User].self)
+				do {
+					return try await session.data(for: UsersRequest.users, using: [User].self)
+				} catch {
+					if case let NetworkError.http(data: data, response: response) = error {
+						print(data)
+						print(response)
+						print(response.statusCode)
+					}
+					print(error)
+					return []
+				}
 			},
 			getUser: { id in
 				try await session.data(for: UsersRequest.user(id), using: User.self)
@@ -57,7 +72,7 @@ extension UsersRequest: Request {
 	var path: String {
 		switch self {
 			case .users, .createUser:
-				return "/api/userss"
+				return "/api/users"
 			case let .user(id):
 				return "/api/users/\(id.uuidString)"
 		}
