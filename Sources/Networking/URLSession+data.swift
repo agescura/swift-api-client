@@ -6,12 +6,8 @@ extension URLSession {
 		using model: Model.Type,
 		decoder: JSONDecoder = JSONDecoder()
 	) async throws -> Model where Element == Model.T {
-		let (data, response) = try await self.data(
-			for: URLRequest(request)
-		)
-		guard let response = response as? HTTPURLResponse else {
-			throw URLError(.badServerResponse)
-		}
+		let (data, response) = try await self.data(request: request)
+		
 		switch response.statusCode {
 			case 200..<300:
 				let element = try decoder.decode(Element.self, from: data)
@@ -19,7 +15,6 @@ extension URLSession {
 			default:
 				throw NetworkError.http(data: data, response: response)
 		}
-		
 	}
 }
 
@@ -27,12 +22,7 @@ extension URLSession {
 	public func data(
 		for request: Request
 	) async throws -> Void {
-		let (data, response) = try await self.data(
-			for: URLRequest(request)
-		)
-		guard let response = response as? HTTPURLResponse else {
-			throw URLError(.badServerResponse)
-		}
+		let (data, response) = try await self.data(request: request)
 		switch response.statusCode {
 			case 200..<300:
 				return
@@ -41,3 +31,20 @@ extension URLSession {
 		}
 	}
 }
+
+extension URLSession {
+	func data(
+		request: Request
+	) async throws -> (Data, HTTPURLResponse) {
+		let (data, response) =
+		
+		try await self.data(
+			for: URLRequest(request)
+		)
+		guard let response = response as? HTTPURLResponse else {
+			throw URLError(.badServerResponse)
+		}
+		return (data, response)
+	}
+}
+

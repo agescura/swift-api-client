@@ -18,6 +18,10 @@ let package = Package(
 			name: "Networking",
 			targets: ["Networking"]
 		),
+		.library(
+			name: "NetworkingBuilders",
+			targets: ["NetworkingBuilders"]
+		),
 	],
 	dependencies: [],
 	targets: [
@@ -25,7 +29,8 @@ let package = Package(
 			name: "APIClient",
 			dependencies: [
 				"Models",
-				"Networking"
+				"Networking",
+				"NetworkingBuilders"
 			]
 		),
 		.target(
@@ -35,6 +40,10 @@ let package = Package(
 		.target(
 			name: "Networking",
 			dependencies: []
+		),
+		.target(
+			name: "NetworkingBuilders",
+			dependencies: ["Networking"]
 		),
 		.testTarget(
 			name: "NetworkingTests",
