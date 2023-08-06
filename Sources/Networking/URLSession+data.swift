@@ -19,13 +19,14 @@ extension URLSession {
 }
 
 extension URLSession {
+	@discardableResult
 	public func data(
 		for request: Request
-	) async throws -> Void {
+	) async throws -> Data {
 		let (data, response) = try await self.data(request: request)
 		switch response.statusCode {
 			case 200..<300:
-				return
+				return data
 			default:
 				throw NetworkError.http(data: data, response: response)
 		}

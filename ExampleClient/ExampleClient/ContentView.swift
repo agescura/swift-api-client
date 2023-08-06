@@ -16,13 +16,33 @@ class ContentModel: ObservableObject {
 	@Published var acronyms: [Acronym] = []
 	@Published var acronym: Acronym?
 	@Published var searchIsPresented = false
+	@Published var data = Data()
 	
 	func task() async {
 		Task { @MainActor in
-			self.acronyms = try await self.apiClient.getAcronyms()
-			if let acronym = self.acronyms.last {
-				self.acronym = try await self.apiClient.getAcronym(acronym.id)
+			do {
+				self.data = try await self.apiClient.download()
+			} catch {
+				print(error.localizedDescription)
 			}
+			
+			
+			
+//			for try await line in try await self.apiClient.getTicker("AAPL") {
+//				print(line)
+//			}
+//			
+			
+//			let (bytes, response) = try await URLSession.shared.bytes(for: URLRequest(url: URL(string: "http://localhost:8080/littlejohn/ticker?AAPL")!))
+//
+//			for try await line in bytes.lines {
+//			  print(line)
+//			}
+			
+//			self.acronyms = try await self.apiClient.getAcronyms()
+//			if let acronym = self.acronyms.last {
+//				self.acronym = try await self.apiClient.getAcronym(acronym.id)
+//			}
 		}
 	}
 	
@@ -51,10 +71,12 @@ struct ContentView: View {
 			}
 			.tabItem { Text("Users") }
 			.tag(Tab.users)
-				
-			Text("Acronyms")
-				.tabItem { Text("Acronyms") }
-				.tag(Tab.acronyms)
+			
+			VStack {
+				FilePreview(fileData: self.model.data)
+			}
+			.tabItem { Text("Acronyms") }
+			.tag(Tab.acronyms)
 			
 			Text("Categories")
 				.tabItem { Text("Categories") }
@@ -103,7 +125,7 @@ struct ContentView: View {
 //			}
 //
 //		}
-//		.task { await self.model.task() }
+		.task { await self.model.task() }
 	}
 }
 
@@ -176,4 +198,23 @@ struct SearchView: View {
 			self.model.search()
 		}
 	}
+}
+
+struct FilePreview: View {
+  let fileData: Data
+  var body: some View {
+	 Section("Preview") {
+		VStack(alignment: .center) {
+		  if let image = UIImage(data: fileData) {
+			 Image(uiImage: image)
+				.resizable()
+				.aspectRatio(contentMode: .fill)
+				.frame(maxHeight: 200)
+				.cornerRadius(10)
+		  } else {
+			 Text("No preview")
+		  }
+		}
+	 }
+  }
 }

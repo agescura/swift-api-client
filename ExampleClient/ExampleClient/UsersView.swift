@@ -10,13 +10,13 @@ public class UsersModel: ObservableObject {
 	public init() {}
 	
 	func onAppear() {
-		Task { @MainActor in
-			do {
-				self.users = try await self.apiClient.getUsers()
-			} catch {
-				print(error)
-			}
-		}
+//		Task { @MainActor in
+//			do {
+//				self.users = try await self.apiClient.getUsers()
+//			} catch {
+//				print(error)
+//			}
+//		}
 	}
 	
 	func addUser() {

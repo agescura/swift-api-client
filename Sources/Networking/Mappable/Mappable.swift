@@ -5,8 +5,6 @@ public protocol Mappable {
 }
 
 extension Array: Mappable where Element: Mappable {
-	public typealias ElementDecodable = [Element.T]
-	
 	public static func map(_ response: [Element.T]) -> Array<Element> {
 		response.compactMap(Element.map)
 	}

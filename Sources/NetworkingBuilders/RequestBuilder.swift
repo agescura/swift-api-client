@@ -23,6 +23,26 @@ public struct RequestBuilder {
 	}
 	
 	static public func buildBlock(
+		_ scheme: Scheme,
+		_ host: Host,
+		_ port: Port,
+		_ uri: Uri,
+		_ method: Method,
+		_ parameters: Parameter...
+	) -> Request {
+		Request(
+			scheme: scheme.value,
+			host: host.value,
+			port: port.value,
+			uri: uri.value,
+			parameters: parameters.map { $0.queryItem },
+			method: method.value,
+			headers: [:],
+			authentication: .none
+		)
+	}
+	
+	static public func buildBlock(
 		_ request: Request,
 		_ uri: Uri
 	) -> Request {
@@ -83,6 +103,23 @@ public struct RequestBuilder {
 			host: request.host,
 			port: request.port,
 			uri: request.uri,
+			parameters: parameters.map { $0.queryItem },
+			method: request.method,
+			headers: [:],
+			authentication: .none
+		)
+	}
+	
+	static public func buildBlock(
+		_ request: Request,
+		_ uri: Uri,
+		_ parameters: Parameter...
+	) -> Request {
+		Request(
+			scheme: request.scheme,
+			host: request.host,
+			port: request.port,
+			uri: request.uri + uri.value,
 			parameters: parameters.map { $0.queryItem },
 			method: request.method,
 			headers: [:],

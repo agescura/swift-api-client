@@ -1,10 +1,10 @@
-// swift-tools-version: 5.4
+// swift-tools-version: 5.7
 
 import PackageDescription
 
 let package = Package(
 	name: "Swift-API-Client",
-	platforms: [.iOS(.v13)],
+	platforms: [.iOS(.v15)],
 	products: [
 		.library(
 			name: "APIClient",
