@@ -17,7 +17,7 @@ public struct APIClient {
 	public var getTicker: @Sendable (String) async throws -> AsyncStream<Int>
 	
 	public var files: @Sendable () async throws -> String
-	public var download: @Sendable () async throws -> Data
+	public var download: @Sendable () async throws -> Void
 	
 	public init(
 		getAcronyms: @escaping () async throws -> [Acronym],
@@ -33,7 +33,7 @@ public struct APIClient {
 		getTicker: @escaping @Sendable (String) async throws -> AsyncStream<Int>,
 		
 		files: @escaping @Sendable () async throws -> String,
-		download: @escaping @Sendable () async throws -> Data
+		download: @escaping @Sendable () async throws -> Void
 	) {
 		self.getAcronyms = getAcronyms
 		self.getAcronym = getAcronym

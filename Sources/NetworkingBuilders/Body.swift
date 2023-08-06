@@ -12,3 +12,9 @@ public struct Body<T: Encodable> {
 		self.encoder = encoder
 	}
 }
+
+extension Body {
+	var data: Data? {
+		try? encoder.encode(self.value)
+	}
+}

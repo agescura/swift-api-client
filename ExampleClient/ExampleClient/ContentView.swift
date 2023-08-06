@@ -20,11 +20,7 @@ class ContentModel: ObservableObject {
 	
 	func task() async {
 		Task { @MainActor in
-			do {
-				self.data = try await self.apiClient.download()
-			} catch {
-				print(error.localizedDescription)
-			}
+			try await self.apiClient.download()
 			
 			
 			

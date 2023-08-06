@@ -10,6 +10,7 @@ public struct Request {
 	public var httpBody: Data?
 	public var headers: [String: String]
 	public var authentication: Authentication
+	public var decoder: JSONDecoder
 	
 	public init(
 		scheme: HTTPScheme,
@@ -20,7 +21,8 @@ public struct Request {
 		method: HTTPMethod,
 		httpBody: Data? = nil,
 		headers: [String : String],
-		authentication: Authentication
+		authentication: Authentication,
+		decoder: JSONDecoder = JSONDecoder()
 	) {
 		self.scheme = scheme
 		self.host = host
@@ -31,6 +33,7 @@ public struct Request {
 		self.httpBody = httpBody
 		self.headers = headers
 		self.authentication = authentication
+		self.decoder = decoder
 	}
 }
 

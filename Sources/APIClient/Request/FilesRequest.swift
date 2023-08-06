@@ -21,4 +21,14 @@ struct FilesRequest {
 		Method(.get)
 		Parameter("graphics-project-ver-1.jpeg")
 	}
+	
+	@RequestBuilder
+	static var chat: Request {
+		Scheme(.http)
+		Host("localhost")
+		Port(8080)
+		Uri("/chat/room")
+		Method(.get)
+		Parameter("Albert".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+	}
 }
