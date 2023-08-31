@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-	name: "Swift-API-Client",
+	name: "Swift-Api-Client",
 	platforms: [.iOS(.v15)],
 	products: [
 		.library(
