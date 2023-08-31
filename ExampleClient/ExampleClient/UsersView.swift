@@ -1,5 +1,3 @@
-import APIClient
-import Models
 import SwiftUI
 
 public class UsersModel: ObservableObject {

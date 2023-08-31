@@ -1,5 +1,4 @@
 import Foundation
-import Models
 import Networking
 import NetworkingBuilders
 
@@ -7,7 +6,7 @@ struct UsersRequest {
 	@RequestBuilder
 	static var users: Request {
 		baseRequest
-		Uri("/users")
+		Uri("users")
 	}
 	
 	@RequestBuilder

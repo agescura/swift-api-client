@@ -7,8 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE243D1E2A5020470095EC05 /* APIClient in Frameworks */ = {isa = PBXBuildFile; productRef = CE243D1D2A5020470095EC05 /* APIClient */; };
 		CE6289DD2A5360B70034E0CF /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6289DC2A5360B70034E0CF /* UsersView.swift */; };
+		CE8DE03C2AA1024F005252D0 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = CE8DE03B2AA1024F005252D0 /* Networking */; };
+		CE8DE03E2AA10251005252D0 /* NetworkingBuilders in Frameworks */ = {isa = PBXBuildFile; productRef = CE8DE03D2AA10251005252D0 /* NetworkingBuilders */; };
+		CE8DE03F2AA10294005252D0 /* AcronymsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DE0382AA1022B005252D0 /* AcronymsRequest.swift */; };
+		CE8DE0402AA10294005252D0 /* LiveValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DE0332AA1022B005252D0 /* LiveValue.swift */; };
+		CE8DE0412AA10294005252D0 /* User+Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DE0302AA1022B005252D0 /* User+Mappable.swift */; };
+		CE8DE0422AA10294005252D0 /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DE0352AA1022B005252D0 /* BaseRequest.swift */; };
+		CE8DE0432AA10294005252D0 /* Acronym+Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DE0312AA1022B005252D0 /* Acronym+Mappable.swift */; };
+		CE8DE0442AA10294005252D0 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DE0392AA1022B005252D0 /* UserRequest.swift */; };
+		CE8DE0452AA10294005252D0 /* TestValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DE03A2AA1022B005252D0 /* TestValue.swift */; };
+		CE8DE0462AA10294005252D0 /* LittleJohnRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DE0372AA1022B005252D0 /* LittleJohnRequest.swift */; };
+		CE8DE0472AA10294005252D0 /* FilesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DE0362AA1022B005252D0 /* FilesRequest.swift */; };
+		CE8DE0482AA10294005252D0 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DE0322AA1022B005252D0 /* Client.swift */; };
+		CE8DE0492AA10299005252D0 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DE02E2AA10227005252D0 /* Tab.swift */; };
+		CE8DE04A2AA10299005252D0 /* Acronym.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DE02C2AA10227005252D0 /* Acronym.swift */; };
+		CE8DE04B2AA10299005252D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DE02D2AA10227005252D0 /* User.swift */; };
 		CEBB69B92A501A2F00A59F67 /* ExampleClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB69B82A501A2F00A59F67 /* ExampleClientApp.swift */; };
 		CEBB69BB2A501A2F00A59F67 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB69BA2A501A2F00A59F67 /* ContentView.swift */; };
 		CEBB69BD2A501A3000A59F67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEBB69BC2A501A3000A59F67 /* Assets.xcassets */; };
@@ -18,6 +32,19 @@
 /* Begin PBXFileReference section */
 		CE243D1B2A5020400095EC05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CE6289DC2A5360B70034E0CF /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
+		CE8DE02C2AA10227005252D0 /* Acronym.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acronym.swift; sourceTree = "<group>"; };
+		CE8DE02D2AA10227005252D0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CE8DE02E2AA10227005252D0 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		CE8DE0302AA1022B005252D0 /* User+Mappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Mappable.swift"; sourceTree = "<group>"; };
+		CE8DE0312AA1022B005252D0 /* Acronym+Mappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Acronym+Mappable.swift"; sourceTree = "<group>"; };
+		CE8DE0322AA1022B005252D0 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		CE8DE0332AA1022B005252D0 /* LiveValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveValue.swift; sourceTree = "<group>"; };
+		CE8DE0352AA1022B005252D0 /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
+		CE8DE0362AA1022B005252D0 /* FilesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesRequest.swift; sourceTree = "<group>"; };
+		CE8DE0372AA1022B005252D0 /* LittleJohnRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleJohnRequest.swift; sourceTree = "<group>"; };
+		CE8DE0382AA1022B005252D0 /* AcronymsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcronymsRequest.swift; sourceTree = "<group>"; };
+		CE8DE0392AA1022B005252D0 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
+		CE8DE03A2AA1022B005252D0 /* TestValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestValue.swift; sourceTree = "<group>"; };
 		CEBB69B52A501A2F00A59F67 /* ExampleClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBB69B82A501A2F00A59F67 /* ExampleClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleClientApp.swift; sourceTree = "<group>"; };
 		CEBB69BA2A501A2F00A59F67 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -31,7 +58,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE243D1E2A5020470095EC05 /* APIClient in Frameworks */,
+				CE8DE03E2AA10251005252D0 /* NetworkingBuilders in Frameworks */,
+				CE8DE03C2AA1024F005252D0 /* Networking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +71,41 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE8DE02B2AA10227005252D0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE8DE02C2AA10227005252D0 /* Acronym.swift */,
+				CE8DE02D2AA10227005252D0 /* User.swift */,
+				CE8DE02E2AA10227005252D0 /* Tab.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE8DE02F2AA1022B005252D0 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				CE8DE0302AA1022B005252D0 /* User+Mappable.swift */,
+				CE8DE0312AA1022B005252D0 /* Acronym+Mappable.swift */,
+				CE8DE0322AA1022B005252D0 /* Client.swift */,
+				CE8DE0332AA1022B005252D0 /* LiveValue.swift */,
+				CE8DE0342AA1022B005252D0 /* Request */,
+				CE8DE03A2AA1022B005252D0 /* TestValue.swift */,
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
+		CE8DE0342AA1022B005252D0 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				CE8DE0352AA1022B005252D0 /* BaseRequest.swift */,
+				CE8DE0362AA1022B005252D0 /* FilesRequest.swift */,
+				CE8DE0372AA1022B005252D0 /* LittleJohnRequest.swift */,
+				CE8DE0382AA1022B005252D0 /* AcronymsRequest.swift */,
+				CE8DE0392AA1022B005252D0 /* UserRequest.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		CEBB69AC2A501A2F00A59F67 = {
@@ -66,6 +129,8 @@
 		CEBB69B72A501A2F00A59F67 /* ExampleClient */ = {
 			isa = PBXGroup;
 			children = (
+				CE8DE02F2AA1022B005252D0 /* APIClient */,
+				CE8DE02B2AA10227005252D0 /* Models */,
 				CE243D1B2A5020400095EC05 /* Info.plist */,
 				CEBB69B82A501A2F00A59F67 /* ExampleClientApp.swift */,
 				CEBB69BA2A501A2F00A59F67 /* ContentView.swift */,
@@ -101,7 +166,8 @@
 			);
 			name = ExampleClient;
 			packageProductDependencies = (
-				CE243D1D2A5020470095EC05 /* APIClient */,
+				CE8DE03B2AA1024F005252D0 /* Networking */,
+				CE8DE03D2AA10251005252D0 /* NetworkingBuilders */,
 			);
 			productName = ExampleClient;
 			productReference = CEBB69B52A501A2F00A59F67 /* ExampleClient.app */;
@@ -157,9 +223,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE8DE0412AA10294005252D0 /* User+Mappable.swift in Sources */,
+				CE8DE04A2AA10299005252D0 /* Acronym.swift in Sources */,
 				CEBB69BB2A501A2F00A59F67 /* ContentView.swift in Sources */,
+				CE8DE0462AA10294005252D0 /* LittleJohnRequest.swift in Sources */,
+				CE8DE04B2AA10299005252D0 /* User.swift in Sources */,
+				CE8DE0442AA10294005252D0 /* UserRequest.swift in Sources */,
+				CE8DE03F2AA10294005252D0 /* AcronymsRequest.swift in Sources */,
+				CE8DE0422AA10294005252D0 /* BaseRequest.swift in Sources */,
+				CE8DE0482AA10294005252D0 /* Client.swift in Sources */,
+				CE8DE0452AA10294005252D0 /* TestValue.swift in Sources */,
 				CEBB69B92A501A2F00A59F67 /* ExampleClientApp.swift in Sources */,
 				CE6289DD2A5360B70034E0CF /* UsersView.swift in Sources */,
+				CE8DE0472AA10294005252D0 /* FilesRequest.swift in Sources */,
+				CE8DE0402AA10294005252D0 /* LiveValue.swift in Sources */,
+				CE8DE0432AA10294005252D0 /* Acronym+Mappable.swift in Sources */,
+				CE8DE0492AA10299005252D0 /* Tab.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,9 +443,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CE243D1D2A5020470095EC05 /* APIClient */ = {
+		CE8DE03B2AA1024F005252D0 /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = APIClient;
+			productName = Networking;
+		};
+		CE8DE03D2AA10251005252D0 /* NetworkingBuilders */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkingBuilders;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,5 +1,4 @@
 import Foundation
-import Models
 
 public typealias Query = String
 

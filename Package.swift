@@ -7,14 +7,6 @@ let package = Package(
 	platforms: [.iOS(.v15)],
 	products: [
 		.library(
-			name: "APIClient",
-			targets: ["APIClient"]
-		),
-		.library(
-			name: "Models",
-			targets: ["Models"]
-		),
-		.library(
 			name: "Networking",
 			targets: ["Networking"]
 		),
@@ -25,18 +17,6 @@ let package = Package(
 	],
 	dependencies: [],
 	targets: [
-		.target(
-			name: "APIClient",
-			dependencies: [
-				"Models",
-				"Networking",
-				"NetworkingBuilders"
-			]
-		),
-		.target(
-			name: "Models",
-			dependencies: []
-		),
 		.target(
 			name: "Networking",
 			dependencies: []

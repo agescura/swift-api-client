@@ -1,8 +1,4 @@
-import APIClient
-import Models
 import SwiftUI
-
-
 
 class ContentModel: ObservableObject {
 	let apiClient = APIClient.liveValue
